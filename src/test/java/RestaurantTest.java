@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,6 +100,22 @@ class RestaurantTest {
 
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.removeFromMenu("French fries"));
+    }
+
+    //Testcase failing because totalAmount() is not yet implemented.
+    //total cost of gulabjamun and Icecream is 60.
+    @Test
+    public void totalAmount_should_be_60(){
+        List<String> selectedItems = new ArrayList<String>();
+        selectedItems.add("GulabJamun");
+        selectedItems.add("Icecream");
+        restaurant.addToMenu("Biryani",70);
+        restaurant.addToMenu("Icecream",30);
+        restaurant.addToMenu("GulabJamun",30);
+
+        assertEquals(60,restaurant.totalAmount(selectedItems));
+
+
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
